@@ -8,9 +8,9 @@ import java.util.Arrays;
 
 public class CalculationRequest {
 
-    private final double num1;
+    private final double firstNumber;
     private final Operator operator;
-    private final double num2;
+    private final double secondNumber;
 
     @JsonCreator
     public CalculationRequest(
@@ -18,29 +18,29 @@ public class CalculationRequest {
             @JsonProperty("operator") final Operator operator,
             @JsonProperty("second_number") final double num2
     ) {
-        this.num1 = num1;
+        this.firstNumber = num1;
         this.operator = operator;
-        this.num2 = num2;
+        this.secondNumber = num2;
     }
 
     protected double calculate() {
         switch (operator) {
             case Plus:
-                return num1 + num2;
+                return firstNumber + secondNumber;
             case Minus:
-                return num1 - num2;
+                return firstNumber - secondNumber;
             case Divide:
-                return num1 / num2;
+                return firstNumber / secondNumber;
             case Times:
-                return num1 * num2;
+                return firstNumber * secondNumber;
         }
 
         return 0;
     }
 
     @JsonProperty("first_number")
-    public double getNum1() {
-        return num1;
+    public double getFirstNumber() {
+        return firstNumber;
     }
 
     @JsonProperty("operator")
@@ -49,16 +49,16 @@ public class CalculationRequest {
     }
 
     @JsonProperty("second_number")
-    public double getNum2() {
-        return num2;
+    public double getSecondNumber() {
+        return secondNumber;
     }
 
     @Override
     public String toString() {
         return "CalculationRequest{" +
-                "num1=" + num1 +
+                "num1=" + firstNumber +
                 ", operator=" + operator +
-                ", num2=" + num2 +
+                ", num2=" + secondNumber +
                 '}';
     }
 }
