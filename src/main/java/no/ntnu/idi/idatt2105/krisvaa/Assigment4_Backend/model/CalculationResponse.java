@@ -5,17 +5,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CalculationResponse {
 
-    private final CalculationRequest calculation;
+    private final Calculation calculation;
     private final double answer;
 
     @JsonCreator
-    public CalculationResponse(@JsonProperty("calculation") CalculationRequest calculation) {
+    public CalculationResponse(@JsonProperty("calculation") Calculation calculation, @JsonProperty("answer") double answer) {
         this.calculation = calculation;
-        this.answer = calculation.calculate();
+        this.answer = answer;
     }
 
     @JsonProperty("calculation")
-    public CalculationRequest getCalculation() {
+    public Calculation getCalculation() {
         return calculation;
     }
 

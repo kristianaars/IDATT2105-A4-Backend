@@ -1,11 +1,14 @@
 package no.ntnu.idi.idatt2105.krisvaa.Assigment4_Backend.controller;
 
-import no.ntnu.idi.idatt2105.krisvaa.Assigment4_Backend.model.CalculationRequest;
-import no.ntnu.idi.idatt2105.krisvaa.Assigment4_Backend.model.CalculationResponse;
+import no.ntnu.idi.idatt2105.krisvaa.Assigment4_Backend.model.Calculation;
+import no.ntnu.idi.idatt2105.krisvaa.Assigment4_Backend.service.CalculationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @RestController
 @RequestMapping(value = "/calculate")
@@ -15,12 +18,14 @@ public class CalculationController {
 
     private final Logger logger = LoggerFactory.getLogger("Calculation Controller");
 
-    @PostMapping("")
-    public CalculationResponse calculate(@RequestBody CalculationRequest calculation) {
-        logger.info("Received calculation request with the following data: " + calculation);
-        CalculationResponse response = new CalculationResponse(calculation);
+    @Autowired
+    private CalculationService calculationService;
 
-        logger.info("Returning the following data to client: " + response);
-        return response;
+    @PostMapping("")
+    public Calculation calculate(
+            @RequestBody Calculation calculation,
+            Principal principal
+    ) {
+        return calculationService.calculate(calculation, Integer.parseInt(principal.getName()));
     }
 }
