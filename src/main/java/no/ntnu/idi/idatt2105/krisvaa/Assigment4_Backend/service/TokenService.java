@@ -33,7 +33,7 @@ public class TokenService {
 
     @Transactional(isolation = Isolation.READ_COMMITTED, readOnly = true)
     public String authenticateUser(String username, String password) {
-        UserAccount authenticatedUser = userAccountRepository.getUserWithCreds(username, password).get(0);
+        UserAccount authenticatedUser = userAccountRepository.getUserWithCreds(username, password);
 
         if(authenticatedUser != null) {
             return generateToken(authenticatedUser.getUser_id());

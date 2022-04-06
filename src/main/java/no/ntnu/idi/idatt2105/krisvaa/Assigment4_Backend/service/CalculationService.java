@@ -5,6 +5,9 @@ import no.ntnu.idi.idatt2105.krisvaa.Assigment4_Backend.repository.CalculatorRep
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Service
 public class CalculationService {
 
@@ -36,5 +39,9 @@ public class CalculationService {
         calculation.setAnswer(answer);
 
         return calculatorRepository.save(calculation);
+    }
+
+    public List<Calculation> getAllCalculationsForUser(long userId) {
+        return calculatorRepository.findAllByUserId(userId);
     }
 }

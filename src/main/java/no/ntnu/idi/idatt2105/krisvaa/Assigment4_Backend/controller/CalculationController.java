@@ -9,9 +9,10 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 
 @RestController
-@RequestMapping(value = "/calculate")
+@RequestMapping(value = "/calculation")
 @EnableAutoConfiguration
 @CrossOrigin
 public class CalculationController {
@@ -27,5 +28,12 @@ public class CalculationController {
             Principal principal
     ) {
         return calculationService.calculate(calculation, Integer.parseInt(principal.getName()));
+    }
+
+    @GetMapping("")
+    public List<Calculation> getCalculations(
+            Principal principal
+    ) {
+        return calculationService.getAllCalculationsForUser(Integer.parseInt(principal.getName()));
     }
 }

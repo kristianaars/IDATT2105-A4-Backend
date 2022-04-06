@@ -22,7 +22,13 @@ public class UserController {
             @RequestParam("password") final String password,
             HttpServletResponse response
     ) {
-
-        return tokenService.authenticateUser(username, password);
+        String token = tokenService.authenticateUser(username, password);
+        if(token == null) {
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            return "Unknown username or password";
+        } else {
+            response.setStatus(HttpServletResponse.SC_CREATED);
+            return tokenService.authenticateUser(username, password);
+        }
     }
 }

@@ -13,7 +13,7 @@ import java.util.Optional;
 public interface UserAccountRepository extends CrudRepository<UserAccount, Long> {
 
     @Query("SELECT usr FROM UserAccount usr WHERE usr.email = :email AND usr.password = :password")
-    List<UserAccount> getUserWithCreds(
+    UserAccount getUserWithCreds(
             @Param("email") String email,
             @Param("password") String password);
 
