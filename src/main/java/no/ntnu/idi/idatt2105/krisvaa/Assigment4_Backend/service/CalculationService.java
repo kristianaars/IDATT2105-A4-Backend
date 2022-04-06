@@ -17,8 +17,8 @@ public class CalculationService {
 
     public Calculation calculate(Calculation calculation, long forUserId) {
         double answer = 0;
-        double firstNumber = calculation.getFirstNumber();
-        double secondNumber = calculation.getSecondNumber();
+        double firstNumber = calculation.getFirst_number();
+        double secondNumber = calculation.getSecond_number();
 
         switch (calculation.getOperator()) {
             case '+':
@@ -38,7 +38,11 @@ public class CalculationService {
         calculation.setUser_id(forUserId);
         calculation.setAnswer(answer);
 
-        return calculatorRepository.save(calculation);
+        if(calculatorRepository.save(calculation) != null) {
+            return calculation;
+        } else {
+            return null;
+        }
     }
 
     public List<Calculation> getAllCalculationsForUser(long userId) {

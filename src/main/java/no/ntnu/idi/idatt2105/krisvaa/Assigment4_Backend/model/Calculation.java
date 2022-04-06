@@ -20,11 +20,11 @@ public class Calculation {
     private UserAccount acc;
 
     @Column(name = "FIRSTNUMBER")
-    private double firstNumber;
+    private double first_number;
     private char operator;
 
     @Column(name = "SECONDNUMBER")
-    private double secondNumber;
+    private double second_number;
     private double answer;
 
     public Calculation() {
@@ -62,20 +62,20 @@ public class Calculation {
         this.acc = acc;
     }
 
-    public double getFirstNumber() {
-        return firstNumber;
+    public double getFirst_number() {
+        return first_number;
     }
 
-    public void setFirstNumber(double firstNumber) {
-        this.firstNumber = firstNumber;
+    public void setFirst_number(double first_number) {
+        this.first_number = first_number;
     }
 
-    public double getSecondNumber() {
-        return secondNumber;
+    public double getSecond_number() {
+        return second_number;
     }
 
-    public void setSecondNumber(double secondNumber) {
-        this.secondNumber = secondNumber;
+    public void setSecond_number(double second_number) {
+        this.second_number = second_number;
     }
 
     public void setAnswer(double answer) {
